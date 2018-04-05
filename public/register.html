@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="row">
+        <div class="col-md-12" style="display: block;">
+            <div class="form-group" style="position: static;">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="fName" placeholder="Enter First Name">
+            </div>
+            <div class="form-group" style="position: static;">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="lName" placeholder="Enter Last Name">
+            </div>
+            <div class="form-group" style="position: static;">
+                <label>Username / Email</label>
+                <input type="email" class="form-control" id="username" placeholder="Enter Email">
+            </div>
+            <div class="form-group" style="">
+                <label>Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group" style="position: static;">
+                <label>Bio</label>
+                <input type="text" class="form-control" id="bio" placeholder="Enter Bio">
+            </div>
+            <div class="form-group" style="position: static;">
+                <label>Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter Title">
+            </div>
+            <a href="javascript:create();">Register</a>
+        </div>
+    </div>
+    <script>
+        window.create = function() {
+          var obj2 = {};
+          obj2["fName"] = $("#fName").val();
+          obj2["lName"] = $("#lName").val();
+          obj2["username"] = $("#username").val();
+          obj2["password"] = $("#password").val();
+          obj2["bio"] = $("#bio").val();
+          obj2["title"] = $("#title").val();
+          obj2["location"] = "here";
+          $.ajax({
+                 dataType: "json",
+                 data: obj2,
+                 url: "/create",
+                 timeout: 2000,
+                 success: function(accessDataset) {
+                 location.href = "/";
+                 },
+                 error: function() {
+                 location.href = "/";
+                 }
+          });
+        }
+    </script>
+  </body>
+</html>
